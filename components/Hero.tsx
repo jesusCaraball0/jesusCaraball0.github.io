@@ -14,12 +14,8 @@ export default function Hero() {
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-            I'm a Computer Science student at the Massachusetts Institute of Technology
-            passionate about building backend, infrastructure, and machine learning solutions for AI-powered applications. 
-            I will be joining Netflix in Summer 2026 as a Software Engineer Intern on the Foundation Technology Platform Team and am 
-            currently a Founding AI Engineer at ArcellAI. Previously, I was a Machine Learning Engineer Intern at NASA, 
-            Machine Learning Researcher at Harvard Medical School, and Software Engineer Intern at Addition Financial 
-            Credit Union. 
+            I'm a CS student at MIT with experience in Software Engineering at Netflix, Machine Learning Engineering at NASA and ArcellAI, and
+            Machine Learning Research at Harvard Medical School
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link

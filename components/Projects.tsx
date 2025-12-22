@@ -10,21 +10,23 @@ const projects = [
   },
   {
     title: "Astrodash",
-    description: "",
-    technologies: ["Python"],
-    github: "",
+    description: "Website and API for automated supernovae spectrum classification. Hosted under UIUC's SCiMMA, it uses Machine Learning models, like CNNs \
+    and Transformers, to classify 50 spectra in under 1 second. Boasts 97% accuracy on test set and capabilities for user-uploaded models, batch classification, \
+    redshift estimation, and interactive visualizations. Currently writing a paper for JOSS describing the project.",
+    technologies: ["Python", "FastAPI", "PyTorch", "TensorFlow", "PostgreSQL", "TypeScript", "Next.js", "Docker"],
+    github: "https://github.com/jesusCaraball0/astrodash-web",
     demo: "#",
   },
   {
     title: "Prediction Market Arbitrage Bot",
     description: "[In progress] Arbitrage tool leveraging Kalshi's and Polymarket's APIs to identify and trade on cross-exchange price discrepancies.",
-    technologies: ["JavaScript", "C++", "REST APIs", "Docker"],
+    technologies: ["JavaScript", "Rust", "REST APIs", "Docker"],
     github: "https://github.com/jesusCaraball0/pk_bot",
     demo: "#",
   },
   {
     title: "Bet.AI: Machine Learning Informed Sports Betting Picks",
-    description: "Machine Learning Platform that hosts Bayesian-informed machine learning models for predictive analytics across football, basketball, soccer \
+    description: "[In progress] Machine Learning Platform that hosts Bayesian-informed machine learning models for predictive analytics across football, basketball, soccer \
     baseball, and hockey. Leverages the Betfair API to get real-time odds and data, which is then used to find discrepancies with predicted stats \
     and give users the probabilistic edge.",
     technologies: ["Python", "PyTorch", "FastAPI", "NumPy", "Pandas", "PostgreSQL", "TypeScript", "Next.js"],
@@ -41,8 +43,9 @@ const projects = [
   },
   {
     title: "Minesweeper",
-    description: "",
-    technologies: ["C++"],
+    description: "Minsweeper implemented in C++ using SFML. Includes GUI, board generation, and game logic. Difficulty ranges from easy to hard, \
+    functionality includes flagging, revealing, and game status detection, and dynamic sizing controls the game relative to screen size.",
+    technologies: ["C++", "SFML"],
     github: "https://github.com/jesusCaraball0/Minesweeper",
     demo: "#",
   },
