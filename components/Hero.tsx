@@ -19,7 +19,7 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
-              href="/projects"
+              href="/resume"
               className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300"
             >
               View My Resume

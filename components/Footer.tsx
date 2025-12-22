@@ -1,14 +1,24 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-300 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} [Your Name]. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
+          <div className="flex items-center space-x-2 mb-4 md:mb-0">
+            <p className="text-gray-600 text-sm">
+              {new Date().getFullYear()} Jesus Caraballo | Software and Machine Learning Engineer |{" "}
+              <Link
+                href="/resume"
+                className="text-gray-600 hover:text-black transition-colors font-medium text-sm"
+              >
+              Resume
+              </Link>
+            </p>
+          </div>
+          <div className="flex items-center space-x-6">
             <a
-              href="https://github.com"
+              href="https://github.com/jesusCaraball0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-black transition-colors"
@@ -18,7 +28,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/jesus-caraballoswe/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-black transition-colors"

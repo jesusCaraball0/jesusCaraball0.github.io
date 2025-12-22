@@ -15,7 +15,7 @@ export default function About() {
             I see computer science and software as the most creative technical outlet to solve problems and improve lives. As a fervent
               believer that AI/ML are the most important technologies of the 21st century, developing AI-powered applications proposes
               an unique opportunity to improve the anthropomorphic experience. Underpining all the drug discoveries, astronomical 
-              advances, and world-class entertainment experiences are throughfully designed scaleable, fault-tolerant software systems
+              advances, and world-class entertainment engines are throughfully designed scaleable, fault-tolerant software systems
               that weave foundational infrastructure, API versatility, and machine learning insights. 
 
             </p>

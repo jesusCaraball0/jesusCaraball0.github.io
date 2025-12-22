@@ -1,0 +1,4 @@
+# Static files directory
+# Files in this folder are served from the root of your site
+# For example: public/resume.pdf will be accessible at /resume.pdf
+
