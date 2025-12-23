@@ -20,7 +20,7 @@ export default function NeuralNetwork() {
     window.addEventListener("resize", setCanvasSize);
 
     // Neural network nodes
-    const nodes: Array<{ x: number; y: number; layer: number; pulse: number }> = [];
+    const nodes: Array<{ x: number; y: number; layer: number }> = [];
     const layers = 4;
     const nodesPerLayer = [3, 5, 4, 2];
 
@@ -29,7 +29,7 @@ export default function NeuralNetwork() {
       for (let i = 0; i < nodesPerLayer[layer]; i++) {
         const x = (canvas.width / (layers + 1)) * (layer + 1);
         const y = (canvas.height / (nodesPerLayer[layer] + 1)) * (i + 1);
-        nodes.push({ x, y, layer, pulse: Math.random() });
+        nodes.push({ x, y, layer });
       }
     }
 
@@ -56,23 +56,17 @@ export default function NeuralNetwork() {
     let time = 0;
 
     const animate = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear fully each frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       time += 0.02;
 
-      // Update node pulses
-      nodes.forEach((node) => {
-        node.pulse = (node.pulse + 0.02) % (Math.PI * 2);
-      });
-
-      // Draw connections
-      ctx.strokeStyle = "rgba(139, 92, 246, 0.15)";
-      ctx.lineWidth = 1;
+      // Draw connections (original pattern and color)
+      ctx.lineWidth = 1.5;
       connections.forEach((conn) => {
         const from = nodes[conn.from];
         const to = nodes[conn.to];
-        const opacity = 0.1 + Math.sin(time + conn.from) * 0.1;
+        const opacity = 0.3 + Math.sin(time + conn.from) * 0.2;
         ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
         ctx.beginPath();
         ctx.moveTo(from.x, from.y);
@@ -80,10 +74,10 @@ export default function NeuralNetwork() {
         ctx.stroke();
       });
 
-      // Draw nodes
+      // Draw nodes (constant, no pulsing)
       nodes.forEach((node) => {
-        const pulseSize = 4 + Math.sin(node.pulse) * 3;
-        const opacity = 0.4 + Math.sin(node.pulse) * 0.3;
+        const nodeSize = 6;
+        const opacity = 0.7;
 
         // Glow effect
         ctx.shadowBlur = 15;
@@ -92,7 +86,7 @@ export default function NeuralNetwork() {
           ? `rgba(0, 217, 255, ${opacity})` 
           : `rgba(139, 92, 246, ${opacity})`;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
       });
@@ -110,9 +104,8 @@ export default function NeuralNetwork() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none opacity-20"
+      className="fixed inset-0 w-full h-full pointer-events-none opacity-40"
       style={{ zIndex: 0 }}
     />
   );
 }
-

@@ -21,15 +21,16 @@ export default function KnowledgeGraph() {
 
     // Knowledge graph nodes (publications)
     const nodes: Array<{ x: number; y: number; connections: number[] }> = [];
-    const nodeCount = 8;
+    const nodeCount = 24; // increased for denser coverage
 
-    // Initialize nodes in a circular/network pattern
+    // Initialize nodes in a wider elliptical/network pattern
     for (let i = 0; i < nodeCount; i++) {
       const angle = (i / nodeCount) * Math.PI * 2;
-      const radius = Math.min(canvas.width, canvas.height) * 0.3;
+      const radiusX = canvas.width * 0.45; // 90% width (0.45 * 2 = 0.9)
+      const radiusY = canvas.height * 0.40; // 80% height (0.40 * 2 = 0.8)
       nodes.push({
-        x: canvas.width / 2 + Math.cos(angle) * radius,
-        y: canvas.height / 2 + Math.sin(angle) * radius,
+        x: canvas.width / 2 + Math.cos(angle) * radiusX,
+        y: canvas.height / 2 + Math.sin(angle) * radiusY,
         connections: [],
       });
     }

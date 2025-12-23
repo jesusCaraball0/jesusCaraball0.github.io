@@ -33,7 +33,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-cyan text-accent-cyan">
+          <h2 className="text-6xl font-bold mb-4 glow-cyan text-accent-cyan">
             Skills & Technologies
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto"></div>
@@ -53,12 +53,13 @@ export default function Skills() {
               <h3 className="text-xl font-semibold text-accent-cyan mb-4 relative z-10">
                 {category.category}
               </h3>
-              <div className="flex flex-wrap gap-2 relative z-10">
+              <div className="flex flex-wrap gap-4 relative z-10">
                 {category.skills.map((skill) => (
                   <motion.span
                     key={skill}
                     whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 bg-black/50 border border-accent-cyan/30 rounded-full text-sm text-gray-300 hover:bg-accent-cyan/10 hover:border-accent-cyan transition-colors"
+                    className="px-4 py-2 bg-slate-800/80 border border-slate-700/50 rounded-lg text-sm text-gray-300 hover:bg-slate-700/80 hover:border-slate-600 transition-colors"
+                    style={{ backgroundColor: 'rgba(30, 41, 59, 0.8)' }}
                   >
                     {skill}
                   </motion.span>

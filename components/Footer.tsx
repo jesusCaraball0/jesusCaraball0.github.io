@@ -2,12 +2,20 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-accent-cyan/30 py-8">
+    <footer
+      className="py-8"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,1) 100%)",
+        borderTop: "1px solid rgba(20, 25, 40, 0.7)",
+        boxShadow: "0 -18px 45px rgba(0,0,0,0.45)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
             <p className="text-gray-400 text-sm">
-              {new Date().getFullYear()} Jesus Caraballo | Software and Machine Learning Engineer |{" "}
+              Software and Machine Learning Engineer |{" "}
               <Link
                 href="/resume"
                 className="text-accent-cyan hover:text-accent-purple transition-colors font-medium text-sm"

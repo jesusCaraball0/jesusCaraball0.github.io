@@ -564,9 +564,9 @@ export default function Publications() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 text-accent-cyan">
-              Publications & Articles
-            </h1>
+                    <h1 className="text-6xl font-bold mb-6 text-accent-cyan">
+                      Publications & Articles
+                    </h1>
           </motion.div>
 
           {/* Publications Section */}

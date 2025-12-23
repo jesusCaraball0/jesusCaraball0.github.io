@@ -23,12 +23,12 @@ export default function DataFlow() {
     const packets: Array<{ x: number; y: number; speed: number; size: number }> = [];
 
     // Initialize packets
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       packets.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         speed: 1 + Math.random() * 2,
-        size: 2 + Math.random() * 4,
+        size: 3 + Math.random() * 5,
       });
     }
 
@@ -46,21 +46,21 @@ export default function DataFlow() {
 
         // Draw packet with trail
         const gradient = ctx.createLinearGradient(
-          packet.x - 20,
+          packet.x - 30,
           packet.y,
           packet.x,
           packet.y
         );
-        gradient.addColorStop(0, "rgba(30, 64, 175, 0)");
-        gradient.addColorStop(1, "rgba(30, 64, 175, 0.6)");
+        gradient.addColorStop(0, "rgba(59, 130, 246, 0)");
+        gradient.addColorStop(1, "rgba(59, 130, 246, 0.8)");
 
         ctx.fillStyle = gradient;
-        ctx.fillRect(packet.x - 20, packet.y - 1, 20, 2);
+        ctx.fillRect(packet.x - 30, packet.y - 2, 30, 4);
 
         // Draw packet
-        ctx.fillStyle = "#1e40af";
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "#1e40af";
+        ctx.fillStyle = "#3b82f6";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#3b82f6";
         ctx.beginPath();
         ctx.arc(packet.x, packet.y, packet.size, 0, Math.PI * 2);
         ctx.fill();
@@ -80,7 +80,7 @@ export default function DataFlow() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none opacity-30"
+      className="fixed inset-0 w-full h-full pointer-events-none opacity-50"
       style={{ zIndex: 0 }}
     />
   );
