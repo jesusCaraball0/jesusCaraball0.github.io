@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  --background: #000000;
+  --foreground: #e5e7eb;
+  --accent-cyan: #1e40af;
+  --accent-purple: #8b5cf6;
+  --accent-green: #10b981;
+  --accent-orange: #f97316;
+  --card-bg: #1a1a2e;
+  --card-border: #16213e;
 }
 
 * {
@@ -20,7 +26,7 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,20 +40,144 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #0a0a0f;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: linear-gradient(to bottom, #1e40af, #8b5cf6);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: linear-gradient(to bottom, #1e3a8a, #a855f7);
 }
 
 /* Selection color */
 ::selection {
-  background-color: #000;
-  color: #fff;
+  background-color: rgba(0, 217, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Animations */
+@keyframes gradient-descent {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(5deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes connection-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Utility classes */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5),
+               0 0 20px rgba(0, 217, 255, 0.3),
+               0 0 30px rgba(0, 217, 255, 0.2);
+}
+
+.glow-purple {
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),
+               0 0 20px rgba(139, 92, 246, 0.3),
+               0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+.shadow-glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3),
+              0 0 40px rgba(0, 217, 255, 0.2),
+              0 0 60px rgba(0, 217, 255, 0.1);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
+              0 0 40px rgba(139, 92, 246, 0.2),
+              0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+.animate-gradient-descent {
+  animation: gradient-descent 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-data-flow {
+  animation: data-flow 10s linear infinite;
+}
+
+.animate-node-pulse {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neural network connection line */
+.neural-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: connection-draw 3s ease-in-out infinite;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -24,27 +25,34 @@ export default function ResumePage() {
 
   if (isAuthenticated) {
     return (
-      <main className="min-h-screen bg-white text-black">
+      <main className="min-h-screen bg-black text-white">
         <Navbar />
-        <div className="pt-16 min-h-screen flex items-center justify-center px-4">
-          <div className="max-w-4xl w-full">
+        <div style={{ paddingTop: '84px' }} className="min-h-screen flex items-center justify-center px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl w-full"
+          >
             <div className="mb-6 text-center">
-              <h1 className="text-3xl font-bold mb-2">Resume</h1>
+              <h1 className="text-3xl font-bold mb-2 glow-cyan text-accent-cyan">Resume</h1>
               <a
                 href="/JesusCaraballoResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-accent-cyan hover:text-accent-purple hover:underline transition-colors"
               >
                 Download PDF
               </a>
             </div>
-            <iframe
-              src="/JesusCaraballoResume.pdf"
-              className="w-full h-[800px] border border-gray-300 rounded-lg"
-              title="Resume PDF"
-            />
-          </div>
+            <div className="bg-card-bg border border-accent-cyan/30 rounded-lg p-4 hover:border-accent-cyan transition-all">
+              <iframe
+                src="/JesusCaraballoResume.pdf"
+                className="w-full h-[800px] border border-accent-cyan/20 rounded"
+                title="Resume PDF"
+              />
+            </div>
+          </motion.div>
         </div>
         <Footer />
       </main>
@@ -52,15 +60,21 @@ export default function ResumePage() {
   }
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
-      <div className="pt-16 min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-md w-full">
-          <div className="bg-gray-100 border border-gray-300 rounded-lg p-8">
-            <h1 className="text-3xl font-bold text-black mb-4 text-center">
+      <div className="pt-16 min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+        <div className="grid-pattern absolute inset-0 opacity-20"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-md w-full relative z-10"
+        >
+          <div className="bg-card-bg border border-accent-cyan/30 rounded-lg p-8 hover:border-accent-cyan hover:shadow-glow-cyan transition-all duration-300">
+            <h1 className="text-3xl font-bold text-accent-cyan mb-4 text-center glow-cyan">
               Resume Access
             </h1>
-            <p className="text-gray-700 mb-6 text-center">
+            <p className="text-gray-300 mb-6 text-center">
               Please enter the password to view the resume.
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,25 +87,30 @@ export default function ResumePage() {
                     setError("");
                   }}
                   placeholder="Enter password"
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black focus:outline-none focus:border-black transition-colors"
+                  className="w-full px-4 py-3 bg-black/50 border border-accent-cyan/30 rounded-lg text-white focus:outline-none focus:border-accent-cyan transition-colors placeholder-gray-500"
                   required
                 />
               </div>
               {error && (
-                <p className="text-red-600 text-sm text-center">{error}</p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-red-400 text-sm text-center"
+                >
+                  {error}
+                </motion.p>
               )}
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300"
+                className="w-full px-6 py-3 bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-lg font-semibold hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105"
               >
                 Access Resume
               </button>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Footer />
     </main>
   );
 }
-

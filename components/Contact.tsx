@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
+import DataFlow from "./DataFlow";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -57,110 +59,138 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+    <section id="contact" className="pb-20 bg-black relative overflow-hidden" style={{ paddingTop: '48px' }}>
+      <DataFlow />
+      <div className="grid-pattern absolute inset-0 opacity-20"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-cyan text-accent-cyan">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-4"></div>
-          <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto mb-4"></div>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Always happy to discuss cool project ideas, collaboration opportunities, or anything software or machine learning
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-gray-100 border border-gray-300 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-black mb-6">Send me a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-gray-700 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black focus:outline-none focus:border-black transition-colors"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black focus:outline-none focus:border-black transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-gray-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black focus:outline-none focus:border-black transition-colors resize-none"
-                  placeholder="Your message..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-card-bg border border-accent-cyan/30 rounded-lg p-8 hover:border-accent-cyan hover:shadow-glow-cyan transition-all duration-300 group relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white mb-6">Send me a message</h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-gray-300 mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-black/50 border border-accent-cyan/30 rounded-lg text-white focus:outline-none focus:border-accent-cyan transition-colors placeholder-gray-500"
+                    placeholder="Your Name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-gray-300 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-black/50 border border-accent-cyan/30 rounded-lg text-white focus:outline-none focus:border-accent-cyan transition-colors placeholder-gray-500"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-gray-300 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-black/50 border border-accent-cyan/30 rounded-lg text-white focus:outline-none focus:border-accent-cyan transition-colors resize-none placeholder-gray-500"
+                    placeholder="Your message..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-lg font-semibold hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </motion.div>
           
           {/* Social Links */}
-          <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
             <div>
-              <h3 className="text-2xl font-bold text-black mb-6">Connect With Me</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Connect With Me</h3>
               <div className="space-y-4">
-                {socialLinks.map((link) => (
-                  <a
+                {socialLinks.map((link, index) => (
+                  <motion.a
                     key={link.name}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-4 p-4 bg-gray-100 border border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-all group"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center space-x-4 p-4 bg-card-bg border border-accent-cyan/30 rounded-lg hover:border-accent-cyan hover:shadow-glow-cyan transition-all group"
                   >
-                    <div className="text-black group-hover:text-gray-700 transition-colors">
+                    <div className="text-accent-cyan group-hover:text-accent-purple transition-colors">
                       {link.icon}
                     </div>
-                    <span className="text-gray-700 group-hover:text-black transition-colors">
+                    <span className="text-gray-300 group-hover:text-white transition-colors">
                       {link.name}
                     </span>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
             
-            <div className="bg-gray-100 border border-gray-300 rounded-lg p-6">
-              <p className="text-gray-700 mb-2">
-                <span className="text-black font-semibold">Email:</span> jesuscaraballotsic@gmail.com
+            <div className="bg-card-bg border border-accent-purple/30 rounded-lg p-6 hover:border-accent-purple transition-all">
+              <p className="text-gray-300 mb-2">
+                <span className="text-accent-cyan font-semibold">Email:</span> jesuscaraballotsic@gmail.com
               </p>
-              <p className="text-gray-700">
-                <span className="text-black font-semibold">Location:</span> Cambridge, MA
+              <p className="text-gray-300">
+                <span className="text-accent-purple font-semibold">Location:</span> Cambridge, MA
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

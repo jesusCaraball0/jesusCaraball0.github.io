@@ -4,11 +4,9 @@ import Footer from "@/components/Footer";
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
-      <div className="pt-16">
-        <Projects />
-      </div>
+      <Projects />
       <Footer />
     </main>
   );

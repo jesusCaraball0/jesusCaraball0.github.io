@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import DataFlow from "./DataFlow";
+
 const experiences = [
   {
     title: "Software Engineer Intern",
@@ -74,67 +79,95 @@ const education = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+    <section id="experience" className="pb-20 bg-black relative overflow-hidden" style={{ paddingTop: '48px' }}>
+      <DataFlow />
+      <div className="grid-pattern absolute inset-0 opacity-20"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-cyan text-accent-cyan">
             Experience & Education
           </h2>
-          <div className="w-24 h-1 bg-black mx-auto"></div>
-        </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto"></div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Experience */}
           <div>
-            <h3 className="text-2xl font-bold text-black mb-8">Experience</h3>
+            <h3 className="text-2xl font-bold text-accent-cyan mb-8">Experience</h3>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-8 border-l-2 border-gray-300">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-black rounded-full"></div>
-                  <div className="bg-gray-100 border border-gray-300 rounded-lg p-6 hover:border-gray-400 transition-all">
-                    <h4 className="text-xl font-semibold text-black mb-1">{exp.title}</h4>
-                    <p className="text-gray-700 font-medium mb-1">{exp.company}</p>
-                    {exp.location && (
-                      <p className="text-gray-600 text-sm mb-2">{exp.location}</p>
-                    )}
-                    <p className="text-gray-600 text-sm mb-4">{exp.period}</p>
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="text-gray-700 flex items-start">
-                          <span className="text-black mr-2">▹</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="relative pl-8 border-l-2 border-accent-cyan/30"
+                >
+                  <div className="absolute -left-2 top-0 w-4 h-4 bg-accent-cyan rounded-full animate-pulse-glow"></div>
+                  <div className="bg-card-bg border border-accent-cyan/30 rounded-lg p-6 hover:border-accent-cyan hover:shadow-glow-cyan transition-all duration-300 group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10">
+                      <h4 className="text-xl font-semibold text-white mb-1">{exp.title}</h4>
+                      <p className="text-accent-cyan font-medium mb-1">{exp.company}</p>
+                      {exp.location && (
+                        <p className="text-gray-400 text-sm mb-2">{exp.location}</p>
+                      )}
+                      <p className="text-gray-400 text-sm mb-4">{exp.period}</p>
+                      <ul className="space-y-2">
+                        {exp.description.map((item, i) => (
+                          <li key={i} className="text-gray-300 flex items-start">
+                            <span className="text-accent-cyan mr-2">▹</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
           
           {/* Education */}
           <div>
-            <h3 className="text-2xl font-bold text-black mb-8">Education</h3>
+            <h3 className="text-2xl font-bold text-accent-purple mb-8">Education</h3>
             <div className="space-y-8">
               {education.map((edu, index) => (
-                <div key={index} className="relative pl-8 border-l-2 border-gray-300">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-black rounded-full"></div>
-                  <div className="bg-gray-100 border border-gray-300 rounded-lg p-6 hover:border-gray-400 transition-all">
-                    <h4 className="text-xl font-semibold text-black mb-1">{edu.degree}</h4>
-                    {edu.school && (
-                      <p className="text-gray-700 font-medium mb-2">{edu.school}</p>
-                    )}
-                    {edu.period && (
-                      <p className="text-gray-600 text-sm mb-4">{edu.period}</p>
-                    )}
-                    {edu.location && (
-                      <p className="text-gray-600 text-sm mb-4">{edu.location}</p>
-                    )}
-                    {edu.description && (
-                      <p className="text-gray-700">{edu.description}</p>
-                    )}
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="relative pl-8 border-l-2 border-accent-purple/30"
+                >
+                  <div className="absolute -left-2 top-0 w-4 h-4 bg-accent-purple rounded-full animate-pulse-glow"></div>
+                  <div className="bg-card-bg border border-accent-purple/30 rounded-lg p-6 hover:border-accent-purple hover:shadow-glow-purple transition-all duration-300 group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent-purple/5 to-accent-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10">
+                      <h4 className="text-xl font-semibold text-white mb-1">{edu.degree}</h4>
+                      {edu.school && (
+                        <p className="text-accent-purple font-medium mb-2">{edu.school}</p>
+                      )}
+                      {edu.period && (
+                        <p className="text-gray-400 text-sm mb-4">{edu.period}</p>
+                      )}
+                      {edu.location && (
+                        <p className="text-gray-400 text-sm mb-4">{edu.location}</p>
+                      )}
+                      {edu.description && (
+                        <p className="text-gray-300">{edu.description}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const skillCategories = [
   {
     category: "Languages",
@@ -19,35 +23,48 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+    <section id="skills" className="pb-20 bg-black relative overflow-hidden" style={{ paddingTop: '48px' }}>
+      <div className="grid-pattern absolute inset-0 opacity-20"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 glow-cyan text-accent-cyan">
             Skills & Technologies
           </h2>
-          <div className="w-24 h-1 bg-black mx-auto"></div>
-        </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-purple mx-auto"></div>
+        </motion.div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <div
+            <motion.div
               key={category.category}
-              className="bg-gray-100 border border-gray-300 rounded-lg p-6 hover:border-gray-400 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-card-bg border border-accent-cyan/30 rounded-lg p-6 hover:border-accent-cyan hover:shadow-glow-cyan transition-all duration-300 relative overflow-hidden group"
             >
-              <h3 className="text-xl font-semibold text-black mb-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/5 to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <h3 className="text-xl font-semibold text-accent-cyan mb-4 relative z-10">
                 {category.category}
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 relative z-10">
                 {category.skills.map((skill) => (
-                  <span
+                  <motion.span
                     key={skill}
-                    className="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-black hover:bg-gray-50 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    className="px-3 py-1 bg-black/50 border border-accent-cyan/30 rounded-full text-sm text-gray-300 hover:bg-accent-cyan/10 hover:border-accent-cyan transition-colors"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
