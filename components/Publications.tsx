@@ -71,47 +71,149 @@ function PublicationCard({ pub, index, onClick }: { pub: typeof publications[0],
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log('Card clicked! Index:', index);
         onClick();
       }}
     >
       <div
         style={{
           minHeight: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(24px)',
-        border: '1px solid rgba(20, 25, 40, 0.6)',
-          borderRadius: '1rem',
-          boxShadow: 'none',
-          padding: '2.5rem 3rem',
-          transition: 'all 0.5s ease',
+          backgroundColor: 'transparent',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '16px',
+          padding: '0',
+          transition: 'all 0.4s ease',
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'hidden',
+          position: 'relative',
         }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(20, 25, 40, 0.8)';
-        e.currentTarget.style.boxShadow = '0 0 30px rgba(20, 40, 80, 0.25)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(20, 25, 40, 0.6)';
-        e.currentTarget.style.boxShadow = 'none';
-      }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+          e.currentTarget.style.boxShadow = '0 0 40px rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.transform = 'translateY(-4px)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
       >
-        <div className="flex flex-col h-full">
-          {/* Title - Centered like modal, no line clamp */}
-          <h3 className="text-xl font-bold text-white leading-tight text-center group-hover:text-accent-cyan transition-colors">
+        {/* Top accent bar */}
+        <div 
+          style={{ 
+            height: '3px', 
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2))',
+          }} 
+        />
+        
+        <div style={{ padding: '24px 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          {/* Type badge */}
+          <div style={{ marginBottom: '16px' }}>
+            <span 
+              style={{ 
+                fontSize: '10px', 
+                fontWeight: '600', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+            >
+              {pub.venue.includes('ICML') ? 'ICML' : pub.venue.includes('ICLR') ? 'ICLR' : 'MIT'}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '600', 
+              color: '#e2e8f0',
+              lineHeight: '1.4',
+              marginBottom: '16px',
+              transition: 'color 0.3s ease',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+            className="group-hover:text-white"
+          >
             {pub.title}
           </h3>
-          <br />
-          {/* Authors - Same style as modal */}
-          <div className="mb-4 mt-auto">
-            <p className="text-base text-gray-300 italic mb-2 text-center">
+          
+          {/* Authors and venue */}
+          <div style={{ marginTop: 'auto' }}>
+            <p 
+              style={{ 
+                fontSize: '13px', 
+                color: 'rgba(255, 255, 255, 0.6)', 
+                fontStyle: 'italic',
+                marginBottom: '8px',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               {pub.authors}
             </p>
-            <p className="text-sm text-white/90 text-center">
-              <span className="font-semibold">{pub.venue}</span>
-              <span className="text-gray-400"> ({pub.year})</span>
-            </p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <p 
+                style={{ 
+                  fontSize: '12px', 
+                  color: 'rgba(255, 255, 255, 0.5)',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                {pub.venue}
+              </p>
+              <span 
+                style={{ 
+                  fontSize: '12px', 
+                  fontWeight: '600',
+                  color: '#64748b',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                {pub.year}
+              </span>
+            </div>
+          </div>
+
+          {/* Click indicator */}
+          <div 
+            style={{ 
+              marginTop: '16px', 
+              paddingTop: '12px', 
+              borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '11px', 
+                color: 'rgba(255, 255, 255, 0.4)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+              className="group-hover:text-white transition-colors"
+            >
+              View Details
+            </span>
+            <svg 
+              width="12" 
+              height="12" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2"
+              style={{ color: 'rgba(255, 255, 255, 0.4)' }}
+              className="group-hover:text-white transition-colors"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -154,7 +256,7 @@ function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClo
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem',
+        padding: '2rem',
       }}
       onClick={onClose}
     >
@@ -166,9 +268,9 @@ function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClo
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
         }}
       />
 
@@ -179,99 +281,206 @@ function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClo
         transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
         style={{
           position: 'relative',
-          width: '66.666667%',
-          maxHeight: '92vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(24px)',
-        border: '1px solid rgba(15, 20, 35, 0.55)',
-        borderRadius: '1rem',
-        boxShadow: '0 0 40px rgba(20, 40, 80, 0.35)',
+          width: '60%',
+          maxWidth: '900px',
+          maxHeight: '85vh',
+          backgroundColor: 'transparent',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '20px',
           overflow: 'hidden',
           zIndex: 10,
-          padding: '4rem 5rem',
         }}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
+        {/* Top accent bar */}
+        <div 
+          style={{ 
+            height: '3px', 
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2))',
+          }} 
+        />
+
         {/* Close Button */}
         <button
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '1rem',
-            right: '1rem',
+            top: '20px',
+            right: '20px',
             zIndex: 20,
-            padding: '0.5rem',
-            borderRadius: '0.5rem',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            color: 'rgba(255, 255, 255, 0.7)',
-            border: 'none',
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            color: 'rgba(255, 255, 255, 0.6)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-            e.currentTarget.style.color = '#1e40af';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
           }}
           aria-label="Close"
         >
-          <svg style={{ width: '1.25rem', height: '1.25rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg style={{ width: '18px', height: '18px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div style={{ overflowY: 'auto', maxHeight: '92vh' }}>
+        <div style={{ overflowY: 'auto', maxHeight: '85vh', padding: '40px 48px' }}>
+          {/* Badge */}
+          <div style={{ marginBottom: '20px' }}>
+            <span 
+              style={{ 
+                fontSize: '10px', 
+                fontWeight: '600', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                padding: '4px 12px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+            >
+              {pub.venue.includes('ICML') ? 'ICML 2025' : pub.venue.includes('ICLR') ? 'ICLR 2025' : 'MIT 2025'}
+            </span>
+          </div>
+
           {/* Title */}
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight text-center">
+          <h2 
+            style={{ 
+              fontSize: '28px', 
+              fontWeight: '700', 
+              color: '#ffffff',
+              lineHeight: '1.3',
+              marginBottom: '16px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
             {pub.title}
           </h2>
 
           {/* Authors */}
-          <div className="mb-6">
-            <p className="text-lg text-gray-300 italic mb-2">
-              {pub.authors}
-            </p>
-            <p className="text-base text-white/90">
-              <span className="font-semibold">{pub.venue}</span>
-              <span className="text-gray-400"> ({pub.year})</span>
-            </p>
-          </div>
+          <p 
+            style={{ 
+              fontSize: '15px', 
+              color: 'rgba(255, 255, 255, 0.6)', 
+              fontStyle: 'italic',
+              marginBottom: '8px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
+            {pub.authors}
+          </p>
+          <p 
+            style={{ 
+              fontSize: '14px', 
+              color: 'rgba(255, 255, 255, 0.5)',
+              marginBottom: '32px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
+            {pub.venue} ({pub.year})
+          </p>
 
           {/* Image */}
           {pub.image && (
-            <div className="mb-8 rounded-lg overflow-hidden border border-white/10 flex justify-center">
+            <div 
+              style={{ 
+                marginBottom: '32px', 
+                borderRadius: '12px', 
+                overflow: 'hidden', 
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+              }}
+            >
               <img
                 src={pub.image}
                 alt={pub.title}
-                className="w-2/3 h-auto object-cover"
+                style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
               />
             </div>
           )}
 
           {/* Abstract */}
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold text-accent-cyan mb-3 uppercase tracking-wide">
+          <div style={{ marginBottom: '32px' }}>
+            <h3 
+              style={{ 
+                fontSize: '11px', 
+                fontWeight: '600', 
+                color: 'rgba(255, 255, 255, 0.5)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '12px',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               Abstract
             </h3>
-            <p className="text-gray-300 leading-relaxed text-base">
+            <p 
+              style={{ 
+                fontSize: '15px', 
+                color: 'rgba(255, 255, 255, 0.7)',
+                lineHeight: '1.7',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               {pub.description}
             </p>
           </div>
 
           {/* Link */}
           {pub.link && (
-            <div className="pt-6 border-t border-white/10 text-center">
+            <div style={{ paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
               <a
                 href={pub.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-cyan hover:text-accent-purple transition-colors font-medium"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  padding: '10px 20px',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
+                }}
               >
                 View Publication
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                </svg>
               </a>
             </div>
           )}
@@ -323,7 +532,7 @@ function ArticleModal({ article, onClose }: { article: typeof articles[0], onClo
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem',
+        padding: '2rem',
       }}
       onClick={onClose}
     >
@@ -335,9 +544,9 @@ function ArticleModal({ article, onClose }: { article: typeof articles[0], onClo
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.9)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
         }}
       />
 
@@ -348,88 +557,185 @@ function ArticleModal({ article, onClose }: { article: typeof articles[0], onClo
         transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
         style={{
           position: 'relative',
-          width: '66.666667%',
-          maxHeight: '92vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(24px)',
-          border: '1px solid rgba(30, 64, 175, 0.3)',
-          borderRadius: '1rem',
-          boxShadow: '0 0 50px rgba(30, 64, 175, 0.5)',
+          width: '60%',
+          maxWidth: '900px',
+          maxHeight: '85vh',
+          backgroundColor: 'transparent',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '20px',
           overflow: 'hidden',
           zIndex: 10,
-          padding: '4rem 5rem',
         }}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
+        {/* Top accent bar */}
+        <div 
+          style={{ 
+            height: '3px', 
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2))',
+          }} 
+        />
+
         {/* Close Button */}
         <button
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '1rem',
-            right: '1rem',
+            top: '20px',
+            right: '20px',
             zIndex: 20,
-            padding: '0.5rem',
-            borderRadius: '0.5rem',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            color: 'rgba(255, 255, 255, 0.7)',
-            border: 'none',
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            color: 'rgba(255, 255, 255, 0.6)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-            e.currentTarget.style.color = '#1e40af';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
           }}
           aria-label="Close"
         >
-          <svg style={{ width: '1.25rem', height: '1.25rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg style={{ width: '18px', height: '18px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div style={{ overflowY: 'auto', maxHeight: '92vh' }}>
+        <div style={{ overflowY: 'auto', maxHeight: '85vh', padding: '40px 48px' }}>
+          {/* Badge */}
+          <div style={{ marginBottom: '20px' }}>
+            <span 
+              style={{ 
+                fontSize: '10px', 
+                fontWeight: '600', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                padding: '4px 12px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+            >
+              Article
+            </span>
+          </div>
+
           {/* Title */}
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight text-center">
+          <h2 
+            style={{ 
+              fontSize: '28px', 
+              fontWeight: '700', 
+              color: '#ffffff',
+              lineHeight: '1.3',
+              marginBottom: '16px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
             {article.title}
           </h2>
 
           {/* Authors */}
-          <div className="mb-6">
-            <p className="text-lg text-gray-300 italic mb-2 text-center">
-              {article.authors}
-            </p>
-            <p className="text-base text-white/90 text-center">
-              <span className="font-semibold">{article.venue}</span>
-              <span className="text-gray-400"> ({article.year})</span>
-            </p>
-          </div>
+          <p 
+            style={{ 
+              fontSize: '15px', 
+              color: 'rgba(255, 255, 255, 0.6)', 
+              fontStyle: 'italic',
+              marginBottom: '8px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
+            {article.authors}
+          </p>
+          <p 
+            style={{ 
+              fontSize: '14px', 
+              color: 'rgba(255, 255, 255, 0.5)',
+              marginBottom: '32px',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+          >
+            {article.venue} ({article.year})
+          </p>
 
           {/* Description */}
-          <div className="mb-6">
-            <h3 className="text-xs font-semibold text-accent-cyan mb-3 uppercase tracking-wide">
+          <div style={{ marginBottom: '32px' }}>
+            <h3 
+              style={{ 
+                fontSize: '11px', 
+                fontWeight: '600', 
+                color: 'rgba(255, 255, 255, 0.5)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '12px',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               Description
             </h3>
-            <p className="text-gray-300 leading-relaxed text-base">
+            <p 
+              style={{ 
+                fontSize: '15px', 
+                color: 'rgba(255, 255, 255, 0.7)',
+                lineHeight: '1.7',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               {article.description}
             </p>
           </div>
 
           {/* Link */}
           {article.link && (
-            <div className="pt-6 border-t border-white/10 text-center">
+            <div style={{ paddingTop: '24px', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
               <a
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-cyan hover:text-accent-purple transition-colors font-medium"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  padding: '10px 20px',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
+                }}
               >
                 Read Article
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                </svg>
               </a>
             </div>
           )}
@@ -458,47 +764,149 @@ function ArticleCard({ article, index, onClick }: { article: typeof articles[0],
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log('Article card clicked! Index:', index);
         onClick();
       }}
     >
       <div
         style={{
           minHeight: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(24px)',
-        border: '1px solid rgba(20, 25, 40, 0.6)',
-          borderRadius: '1rem',
-          boxShadow: 'none',
-          padding: '2.5rem 3rem',
-          transition: 'all 0.5s ease',
+          backgroundColor: 'transparent',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '16px',
+          padding: '0',
+          transition: 'all 0.4s ease',
           display: 'flex',
           flexDirection: 'column',
+          overflow: 'hidden',
+          position: 'relative',
         }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(20, 25, 40, 0.8)';
-        e.currentTarget.style.boxShadow = '0 0 30px rgba(20, 40, 80, 0.25)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(20, 25, 40, 0.6)';
-        e.currentTarget.style.boxShadow = 'none';
-      }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+          e.currentTarget.style.boxShadow = '0 0 40px rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.transform = 'translateY(-4px)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
       >
-        <div className="flex flex-col h-full">
-          {/* Title - Centered like modal, no line clamp */}
-          <h3 className="text-xl font-bold text-white leading-tight text-center group-hover:text-accent-cyan transition-colors">
+        {/* Top accent bar */}
+        <div 
+          style={{ 
+            height: '3px', 
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2))',
+          }} 
+        />
+        
+        <div style={{ padding: '24px 28px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          {/* Type badge */}
+          <div style={{ marginBottom: '16px' }}>
+            <span 
+              style={{ 
+                fontSize: '10px', 
+                fontWeight: '600', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.1em',
+                color: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                padding: '4px 10px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+              }}
+            >
+              Article
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '600', 
+              color: '#e2e8f0',
+              lineHeight: '1.4',
+              marginBottom: '16px',
+              transition: 'color 0.3s ease',
+              fontFamily: 'system-ui, sans-serif',
+            }}
+            className="group-hover:text-white"
+          >
             {article.title}
           </h3>
-          <br />
-          {/* Authors - Same style as modal */}
-          <div className="mb-4 mt-auto">
-            <p className="text-base text-gray-300 italic mb-2 text-center">
+          
+          {/* Authors and venue */}
+          <div style={{ marginTop: 'auto' }}>
+            <p 
+              style={{ 
+                fontSize: '13px', 
+                color: 'rgba(255, 255, 255, 0.6)', 
+                fontStyle: 'italic',
+                marginBottom: '8px',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               {article.authors}
             </p>
-            <p className="text-sm text-white/90 text-center">
-              <span className="font-semibold">{article.venue}</span>
-              <span className="text-gray-400"> ({article.year})</span>
-            </p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <p 
+                style={{ 
+                  fontSize: '12px', 
+                  color: 'rgba(255, 255, 255, 0.5)',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                {article.venue}
+              </p>
+              <span 
+                style={{ 
+                  fontSize: '12px', 
+                  fontWeight: '600',
+                  color: '#64748b',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                {article.year}
+              </span>
+            </div>
+          </div>
+
+          {/* Click indicator */}
+          <div 
+            style={{ 
+              marginTop: '16px', 
+              paddingTop: '12px', 
+              borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '11px', 
+                color: 'rgba(255, 255, 255, 0.4)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+              className="group-hover:text-white transition-colors"
+            >
+              Read More
+            </span>
+            <svg 
+              width="12" 
+              height="12" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2"
+              style={{ color: 'rgba(255, 255, 255, 0.4)' }}
+              className="group-hover:text-white transition-colors"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -562,26 +970,29 @@ export default function Publications() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-                    <h1 className="text-6xl font-bold mb-6 text-accent-cyan">
-                      Publications & Articles
-                    </h1>
+            <h1 className="text-6xl font-bold mb-4 text-white">
+              Publications & Articles
+            </h1>
+            <div className="w-24 h-1 mx-auto" style={{ background: 'linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.3))' }}></div>
           </motion.div>
 
           {/* Publications Section */}
-          <div className="mb-32">
+          <div className="mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-12 text-center"
+              className="mb-10"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-accent-cyan mb-2">
+              <h2 style={{ fontSize: '28px', fontWeight: '600', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '8px', fontFamily: 'system-ui, sans-serif' }}>
                 Publications
               </h2>
-              <p className="text-gray-400 text-sm">Papers and posters on Machine Learning, Biomedical AI, and Natural Language Processing</p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '14px', fontFamily: 'system-ui, sans-serif' }}>
+                Papers and posters on Machine Learning, Biomedical AI, and Natural Language Processing
+              </p>
             </motion.div>
 
             <div 
@@ -613,12 +1024,14 @@ export default function Publications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-12 text-center"
+              className="mb-10"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-accent-purple mb-2">
+              <h2 style={{ fontSize: '28px', fontWeight: '600', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '8px', fontFamily: 'system-ui, sans-serif' }}>
                 Articles
               </h2>
-              <p className="text-gray-400 text-sm">Featured articles and media coverage</p>
+              <p style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '14px', fontFamily: 'system-ui, sans-serif' }}>
+                Featured articles and media coverage
+              </p>
             </motion.div>
 
             <div 
