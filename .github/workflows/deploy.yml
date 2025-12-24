@@ -33,6 +33,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          NEXT_PUBLIC_RESUME_PASSWORD: ${{ secrets.NEXT_PUBLIC_RESUME_PASSWORD }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

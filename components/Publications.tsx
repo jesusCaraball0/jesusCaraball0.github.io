@@ -224,10 +224,8 @@ function PublicationCard({ pub, index, onClick }: { pub: typeof publications[0],
 // Modal Component - Simplified and guaranteed to work
 function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClose: () => void }) {
   useEffect(() => {
-    console.log('Modal mounted with pub:', pub?.title);
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        console.log('Escape pressed');
         onClose();
       }
     };
@@ -238,11 +236,8 @@ function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClo
   }, [pub, onClose]);
 
   if (!pub) {
-    console.log('Modal: No pub provided');
     return null;
   }
-
-  console.log('Modal: Rendering modal for:', pub.title);
 
   const modalContent = (
     <div 
@@ -500,10 +495,8 @@ function PublicationModal({ pub, onClose }: { pub: typeof publications[0], onClo
 // Article Modal Component - Same as PublicationModal but without image support
 function ArticleModal({ article, onClose }: { article: typeof articles[0], onClose: () => void }) {
   useEffect(() => {
-    console.log('Article modal mounted with article:', article?.title);
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        console.log('Escape pressed');
         onClose();
       }
     };
@@ -514,11 +507,8 @@ function ArticleModal({ article, onClose }: { article: typeof articles[0], onClo
   }, [article, onClose]);
 
   if (!article) {
-    console.log('Article modal: No article provided');
     return null;
   }
-
-  console.log('Article modal: Rendering modal for:', article.title);
 
   const modalContent = (
     <div 
@@ -919,8 +909,6 @@ export default function Publications() {
   const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
 
   useEffect(() => {
-    console.log('SelectedPub changed to:', selectedPub);
-    console.log('SelectedArticle changed to:', selectedArticle);
     if (selectedPub !== null || selectedArticle !== null) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -932,26 +920,20 @@ export default function Publications() {
   }, [selectedPub, selectedArticle]);
 
   const handleCardClick = (index: number) => {
-    console.log('handleCardClick called with index:', index);
     setSelectedPub(index);
   };
 
   const handleArticleClick = (index: number) => {
-    console.log('handleArticleClick called with index:', index);
     setSelectedArticle(index);
   };
 
   const handleCloseModal = () => {
-    console.log('handleCloseModal called');
     setSelectedPub(null);
   };
 
   const handleCloseArticleModal = () => {
-    console.log('handleCloseArticleModal called');
     setSelectedArticle(null);
   };
-
-  console.log('Publications component render. selectedPub:', selectedPub, 'selectedArticle:', selectedArticle);
 
   return (
     <>

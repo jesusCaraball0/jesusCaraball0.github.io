@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const RESUME_PASSWORD = "password1"; // Change this to your desired password
+// Password is stored in .env.local (gitignored) and injected at build time
+const RESUME_PASSWORD = process.env.NEXT_PUBLIC_RESUME_PASSWORD || "";
 
 export default function ResumePage() {
   const [password, setPassword] = useState("");
@@ -14,6 +15,7 @@ export default function ResumePage() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (password === RESUME_PASSWORD) {
       setIsAuthenticated(true);
       setError("");
@@ -27,28 +29,78 @@ export default function ResumePage() {
     return (
       <main className="min-h-screen bg-black text-white">
         <Navbar />
-        <div style={{ paddingTop: '84px' }} className="min-h-screen flex items-center justify-center px-4">
+        <div style={{ paddingTop: '120px', paddingBottom: '60px' }} className="min-h-screen flex items-start justify-center px-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             className="max-w-4xl w-full"
           >
-            <div className="mb-6 text-center">
-              <h1 className="text-3xl font-bold mb-2 glow-cyan text-accent-cyan">Resume</h1>
+            <div style={{ marginBottom: '32px', textAlign: 'center' }}>
+              <h1 
+                style={{
+                  fontSize: '36px',
+                  fontWeight: '600',
+                  color: '#ffffff',
+                  marginBottom: '16px',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+              >
+                Resume
+              </h1>
               <a
                 href="/JesusCaraballoResume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-cyan hover:text-accent-purple hover:underline transition-colors"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  padding: '10px 20px',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                  fontFamily: 'system-ui, sans-serif',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)';
+                }}
               >
                 Download PDF
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
               </a>
             </div>
-            <div className="bg-card-bg border border-accent-cyan/30 rounded-lg p-4 hover:border-accent-cyan transition-all">
+            <div 
+              style={{
+                backgroundColor: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '16px',
+                padding: '16px',
+                overflow: 'hidden',
+              }}
+            >
               <iframe
                 src="/JesusCaraballoResume.pdf"
-                className="w-full h-[800px] border border-accent-cyan/20 rounded"
+                style={{
+                  width: '100%',
+                  height: '800px',
+                  border: 'none',
+                  borderRadius: '8px',
+                }}
                 title="Resume PDF"
               />
             </div>
@@ -62,21 +114,57 @@ export default function ResumePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       <Navbar />
-      <div className="pt-16 min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
-        <div className="grid-pattern absolute inset-0 opacity-20"></div>
+      <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-md w-full relative z-10"
+          style={{ width: '40%', minWidth: '320px', maxWidth: '500px' }}
+          className="relative z-10"
         >
-          <div className="bg-card-bg border border-accent-cyan/30 rounded-lg p-8 hover:border-accent-cyan hover:shadow-glow-cyan transition-all duration-300">
-            <h1 className="text-3xl font-bold text-accent-cyan mb-4 text-center glow-cyan">
+          <div 
+            style={{
+              backgroundColor: 'transparent',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '24px',
+              padding: '40px',
+              backdropFilter: 'blur(8px)',
+            }}
+          >
+            {/* Top accent bar */}
+            <div 
+              style={{ 
+                height: '3px', 
+                background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2))',
+                borderRadius: '2px',
+                marginBottom: '32px',
+              }} 
+            />
+            
+            <h1 
+              style={{
+                fontSize: '28px',
+                fontWeight: '600',
+                color: '#ffffff',
+                marginBottom: '12px',
+                textAlign: 'center',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               Resume Access
             </h1>
-            <p className="text-gray-300 mb-6 text-center">
+            <p 
+              style={{
+                fontSize: '15px',
+                color: 'rgba(255, 255, 255, 0.5)',
+                marginBottom: '32px',
+                textAlign: 'center',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
               Please enter the password to view the resume.
             </p>
+            
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
@@ -87,22 +175,71 @@ export default function ResumePage() {
                     setError("");
                   }}
                   placeholder="Enter password"
-                  className="w-full px-4 py-3 bg-black/50 border border-accent-cyan/30 rounded-lg text-white focus:outline-none focus:border-accent-cyan transition-colors placeholder-gray-500"
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    backgroundColor: 'rgba(25, 30, 45, 0.6)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '16px',
+                    color: '#ffffff',
+                    fontSize: '15px',
+                    fontFamily: 'system-ui, sans-serif',
+                    outline: 'none',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    e.currentTarget.style.backgroundColor = 'rgba(25, 30, 45, 0.8)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.backgroundColor = 'rgba(25, 30, 45, 0.6)';
+                  }}
                   required
                 />
               </div>
+              
               {error && (
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="text-red-400 text-sm text-center"
+                  style={{
+                    color: '#f87171',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                    fontFamily: 'system-ui, sans-serif',
+                  }}
                 >
                   {error}
                 </motion.p>
               )}
+              
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-lg font-semibold hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105"
+                style={{
+                  width: '100%',
+                  padding: '14px 24px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  color: '#000000',
+                  borderRadius: '50px',
+                  fontWeight: '500',
+                  fontSize: '15px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'system-ui, sans-serif',
+                  transition: 'all 0.3s ease',
+                  marginTop: '8px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.transform = 'scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
                 Access Resume
               </button>

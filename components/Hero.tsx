@@ -2,65 +2,144 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import GradientDescent from "./GradientDescent";
+import LossLandscape from "./LossLandscape";
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
-      <GradientDescent />
-      <div className="grid-pattern absolute inset-0 opacity-30"></div>
+    <section id="hero" className="min-h-screen flex items-start justify-center bg-black relative overflow-hidden">
+      <LossLandscape />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Gradient overlay to obscure background behind text */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '90%',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)',
+          zIndex: 5,
+          pointerEvents: 'none',
+        }}
+      />
+      
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ marginTop: '100px' }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
           className="space-y-6"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold"
-          >
-            <span className="block mb-2 text-gray-300">Hi, my name is</span>
-            <span className="block glow-cyan text-accent-cyan">
-              Jesus Caraballo
-            </span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+          {/* Main headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+            style={{
+              marginTop: '0',
+              maxWidth: '700px',
+              margin: '0 auto',
+            }}
           >
-            I'm a CS student at MIT with experience in Software Engineering at Netflix, Machine Learning Engineering at NASA and ArcellAI, and
-            Machine Learning Research at Harvard Medical School
-          </motion.p>
+            <p
+              style={{
+                fontSize: '18px',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontWeight: '300',
+                fontFamily: 'system-ui, sans-serif',
+                marginBottom: '8px',
+              }}
+            >
+              Hi, I'm
+            </p>
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+                fontWeight: '600',
+                lineHeight: '1.1',
+                letterSpacing: '-0.02em',
+                color: '#ffffff',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                marginBottom: '20px',
+              }}
+            >
+              Jesus Caraballo
+            </h1>
+            <p
+              style={{
+                fontSize: '18px',
+                color: 'rgba(255, 255, 255, 0.6)',
+                lineHeight: '1.7',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+            >
+              A CS student at MIT building intelligent systems at Netflix, NASA, and Harvard Medical School.
+            </p>
+          </motion.div>
           
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-8"
           >
             <Link
               href="/resume"
-              className="px-8 py-3 bg-gradient-to-r from-accent-cyan to-accent-purple text-white rounded-lg font-semibold hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105 relative overflow-hidden group"
+              style={{
+                padding: '14px 32px',
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#000000',
+                borderRadius: '50px',
+                fontWeight: '500',
+                fontSize: '15px',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                border: 'none',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#ffffff';
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
-              <span className="relative z-10">View My Resume</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-purple to-accent-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              View Resume
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-3 border-2 border-accent-cyan text-accent-cyan rounded-lg font-semibold hover:bg-accent-cyan/10 hover:shadow-glow-cyan transition-all duration-300 transform hover:scale-105"
+              style={{
+                padding: '14px 32px',
+                backgroundColor: 'transparent',
+                color: 'rgba(255, 255, 255, 0.9)',
+                borderRadius: '50px',
+                fontWeight: '500',
+                fontSize: '15px',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                fontFamily: 'system-ui, sans-serif',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }}
             >
               Get In Touch
             </Link>
           </motion.div>
         </motion.div>
       </div>
+
     </section>
   );
 }

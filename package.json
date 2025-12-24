@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jesusCaraball0/jesusCaraball0.github.io#readme",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.23.26",
     "next": "^16.1.0",
     "react": "^19.2.3",
