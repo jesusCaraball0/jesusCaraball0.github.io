@@ -184,7 +184,7 @@ export default function Projects() {
                       </div>
                     </div>
                     
-                    {/* Visual placeholder side */}
+                    {/* Visual side - maintains layout even without image */}
                     <div 
                       className="h-64 relative" 
                       style={{ 
@@ -193,42 +193,19 @@ export default function Projects() {
                         marginRight: isEven ? '0' : '50px'
                       }}
                     >
-                      <div className="w-full h-full bg-gradient-to-br from-accent-cyan/5 via-accent-purple/5 to-transparent rounded-lg border border-white/10 relative overflow-hidden group">
-                        {project.image ? (
-                          /* Project Image */
+                      {project.image && (
+                        <div className="w-full h-full bg-gradient-to-br from-accent-cyan/5 via-accent-purple/5 to-transparent rounded-lg border border-white/10 relative overflow-hidden group">
                           <div className="w-full h-full relative flex items-center justify-center p-4">
                             <img
                               src={project.image}
                               alt={project.title}
                               className="max-w-full max-h-full w-auto h-auto object-contain"
-                              onError={(e) => {
-                                console.error('Image failed to load:', project.image);
-                                e.currentTarget.style.display = 'none';
-                              }}
                             />
                           </div>
-                        ) : (
-                          <>
-                            {/* Subtle pattern */}
-                            <div className="absolute inset-0 opacity-20">
-                              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(30,64,175,0.03)_25%,rgba(30,64,175,0.03)_50%,transparent_50%,transparent_75%,rgba(30,64,175,0.03)_75%)] bg-[length:30px_30px]"></div>
-                            </div>
-                            
-                            {/* Placeholder text */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="text-center">
-                                <svg className="w-12 h-12 mx-auto mb-2 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                <p className="text-xs text-white/30 uppercase tracking-wide">Project Visual</p>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                        
-                        {/* Hover effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/0 to-accent-purple/0 group-hover:from-accent-cyan/10 group-hover:to-accent-purple/10 transition-all duration-500"></div>
-                      </div>
+                          {/* Hover effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/0 to-accent-purple/0 group-hover:from-accent-cyan/10 group-hover:to-accent-purple/10 transition-all duration-500"></div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
