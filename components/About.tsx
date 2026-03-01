@@ -10,7 +10,7 @@ const exploringTopics = [
   "Better Tokenization for NLP",
   "Prediction Markets and Sports Betting",
   "Infra + Backend + ML devving",
-  "Rust, C++, and JavaScript",
+  "Rust, C++, and TypeScript",
 ];
 
 export default function About() {
@@ -127,9 +127,9 @@ export default function About() {
                   >
                     <span style={{ color: '#f97316', fontWeight: '500' }}>Coming up:</span> Netflix SWE Intern (Summer 2026)
                     <br />
-                    <span style={{ color: '#fbbf24', fontWeight: '500' }}>Current:</span> Founding AI Engineer @ ArcellAI
+                    <span style={{ color: '#fbbf24', fontWeight: '500' }}>Current:</span> Machine Learning Research @ NASA / MIT Kavli Institute / SkAI
                     <br />
-                    <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: '500' }}>Past:</span> NASA, Harvard Medical School, Addition Financial
+                    <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: '500' }}>Past:</span> Harvard Medical School, Addition Financial
                   </p>
                 </div>
               </div>

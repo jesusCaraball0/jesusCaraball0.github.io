@@ -8,7 +8,7 @@ import KnowledgeGraph from "./KnowledgeGraph";
 const publications = [
   {
     title: "PyTDC: A multimodal machine learning training, evaluation, and inference platform for biomedical foundation models",
-    authors: "Alejandro Velez-Arce, Marinka Zitnik",
+    authors: "Alejandro Velez-Arce, Jesus Caraballo, Marinka Zitnik",
     venue: "ICML Poster: International Conference on Machine Learning",
     year: "2025",
     description: "Existing biomedical benchmarks do not provide end-to-end infrastructure for training, evaluation, and inference of models that integrate multimodal biological data and a broad range of machine learning tasks in therapeutics. We present PyTDC, an open-source machine-learning platform providing streamlined training, evaluation, and inference software for multimodal biological AI models. I contributed to the core package and developed the infrastructure to load, benchmark, and fine-tune therapeutic AI models like scVI.",

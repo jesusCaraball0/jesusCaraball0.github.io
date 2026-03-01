@@ -15,7 +15,7 @@ const timelineItems = [
     color: "#A31F34", // MIT crimson
     image: "/imgs/MIT.svg",
     description: [
-      "Most interesting classes include Machine Learning (G), Natural Language Processing (G), Design and Analysis of Algorithms, Probability and Random Variables, and Linear Algebra.",
+      "Most interesting classes include Machine Learning (G), Natural Language Processing (G), Software Construction, Design and Analysis of Algorithms, Probability and Random Variables, and Linear Algebra.",
       "Also keeping busy as an Intro to Machine Learning LA, competing with the Poker Club, programming a player for Pokerbots, and working on my own projects."
     ],
   },
@@ -33,6 +33,20 @@ const timelineItems = [
   },
   {
     type: "experience",
+    title: "Machine Learning Engineer Intern",
+    company: "NASA, MIT Kavli Institute",
+    location: "Remote",
+    period: "Jun 2025 - Present",
+    color: "#FFFFFF", // NASA white (for readability)
+    image: "/imgs/NASA_logo.svg",
+    description: [
+      "Created AstroDash 2.0, a website and API serving Machine Learning models classifying supernovae spectra",
+      "Publishing as first author in the Journal of Open Source Software (JOSS) describing AstroDash's support for user uploaded models, optimized batch classification, visualization, and redshift estimation; all deployed on UIUC's SCiMMA cluster.",
+      "Trained CNNs on supernovae classification and redshift estimation. Used feature engineering, ensembles, K-Fold cross validation, and learning rate scheduling to surpass the original DASH on both tasks.",
+    ],
+  },
+  {
+    type: "experience",
     title: "Founding AI Engineer",
     company: "ArcellAI",
     location: "San Francisco, CA & Remote",
@@ -43,20 +57,6 @@ const timelineItems = [
       "Built backend for bioinformatics AI agent, including LLM orchestration pipelines, API endpoints, services layer, and database integration",
       "Fine-tuned virtual cell Foundation Model for perturbation response prediction on AWS",
       "Working to integrate perturbation response prediction model into ArcellAI's AI agents",
-    ],
-  },
-  {
-    type: "experience",
-    title: "Machine Learning Engineer Intern",
-    company: "NASA, MIT Kavli Institute",
-    location: "Remote",
-    period: "Jun 2025 - Sep 2025",
-    color: "#FFFFFF", // NASA white (for readability)
-    image: "/imgs/NASA_logo.svg",
-    description: [
-      "Created AstroDash 2.0, a website and API serving Machine Learning models classifying supernovae spectra",
-      "Publishing as first author in the Journal of Open Source Software (JOSS) describing AstroDash's support for user uploaded models, optimized batch classification, visualization, and redshift estimation; all deployed on UIUC's SCiMMA cluster.",
-      "Trained CNNs on supernovae classification and redshift estimation. Used feature engineering, ensembles, K-Fold cross validation, and learning rate scheduling to surpass the original DASH on both tasks.",
     ],
   },
   {
