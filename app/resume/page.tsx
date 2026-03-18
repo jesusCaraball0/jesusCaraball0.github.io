@@ -49,7 +49,7 @@ export default function ResumePage() {
                 Resume
               </h1>
               <a
-                href="/JesusCaraballoResume.pdf"
+                href="/JesusCaraballoResume.pdf?v=2"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -93,8 +93,10 @@ export default function ResumePage() {
                 overflow: 'hidden',
               }}
             >
-              <iframe
-                src="/JesusCaraballoResume.pdf"
+              {/* Bump pdfVersion when you replace the PDF to avoid cache showing the old file */}
+              <object
+                data={`/JesusCaraballoResume.pdf?v=2`}
+                type="application/pdf"
                 style={{
                   width: '100%',
                   height: '800px',
@@ -102,7 +104,39 @@ export default function ResumePage() {
                   borderRadius: '8px',
                 }}
                 title="Resume PDF"
-              />
+              >
+                <div
+                  style={{
+                    padding: '24px',
+                    textAlign: 'center',
+                    color: 'rgba(255,255,255,0.8)',
+                    backgroundColor: 'rgba(255,255,255,0.05)',
+                    borderRadius: '8px',
+                    height: '800px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '16px',
+                  }}
+                >
+                  <p style={{ margin: 0, fontSize: '16px' }}>
+                    PDF couldn&apos;t be displayed in this browser.
+                  </p>
+                  <a
+                    href="/JesusCaraballoResume.pdf?v=2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: '#fff',
+                      fontWeight: 600,
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    Open / download PDF in a new tab
+                  </a>
+                </div>
+              </object>
             </div>
           </motion.div>
         </div>
