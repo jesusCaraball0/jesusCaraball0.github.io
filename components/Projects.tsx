@@ -5,20 +5,20 @@ import { useRef } from "react";
 
 const projects = [
   {
-    title: "PyTDC",
-    description: "A multimodal machine learning training, evaluation, and inference platform for biomedical foundation models. I contributed infrastructure to load, benchmark, and fine-tune therapeutic AI models like scVI, scGPT, Geneformer, and ESM, molecule generation metrics, and drug sensitivity prediction experiments.",
-    technologies: ["Python", "PyTorch", "Hugging Face", "AnnData", "Pandas", "NumPy", "Matplotlib",],
-    github: "https://github.com/mims-harvard/TDC",
-    demo: "#",
-    image: "/imgs/PyTDC.png",
-  },
-  {
     title: "Astrodash",
     description: "Website and API for automated supernovae spectrum classification. Hosted under UIUC's SCiMMA, it uses Machine Learning models, like CNNs and Transformers, to classify 50 spectra in under 1 second. Boasts 97% accuracy on test set and capabilities for user-uploaded models, batch classification, redshift estimation, and interactive visualizations. Currently writing a paper for JOSS describing the project.",
     technologies: ["Python", "FastAPI", "PyTorch", "TensorFlow", "PostgreSQL", "TypeScript", "Next.js", "Docker"],
     github: "https://github.com/jesusCaraball0/astrodash-web",
     demo: "#",
     image: "/imgs/astrodash.png",
+  },
+  {
+    title: "PyTDC",
+    description: "A multimodal machine learning training, evaluation, and inference platform for biomedical foundation models. I contributed infrastructure to load, benchmark, and fine-tune therapeutic AI models like scVI, scGPT, Geneformer, and ESM, molecule generation metrics, and drug sensitivity prediction experiments.",
+    technologies: ["Python", "PyTorch", "Hugging Face", "AnnData", "Pandas", "NumPy", "Matplotlib",],
+    github: "https://github.com/mims-harvard/TDC",
+    demo: "#",
+    image: "/imgs/PyTDC.png",
   },
   {
     title: "PropAI",
